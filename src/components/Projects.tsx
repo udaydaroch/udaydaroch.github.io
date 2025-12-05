@@ -21,11 +21,10 @@ const Projects = () => {
   return (
     <div
       className="container d-flex flex-column py-4 justify-content-center"
-      style={{ minHeight: "calc(100vh - 100px)" }}
     >
-      <div className="project-name mt-3 text-center">Projects</div>
+      <div className="project-name text-center">Projects</div>
 
-      <div className="row g-4 flex-grow-1">
+      <div className="row g-3 flex-grow-1">
         {currentProjects.map((project) => (
           <div key={project.id} className="col-md-6 col-lg-3">
             <ProjectCard project={project} />

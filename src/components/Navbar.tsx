@@ -5,7 +5,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand bg-dark navbar-dark sticky-top">
       <div className="container d-flex justify-content-center">
 
-        <ul className="navbar-nav gap-4">
+        <ul className="navbar-nav gap-3">
 
           <li className="nav-item">
             <NavLink
