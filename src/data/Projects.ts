@@ -1,3 +1,11 @@
+import gardenersGrove from "../assets/gardeners-grove.png";
+import scrumboard from "../assets/scrumboard.png";
+import cycleways from "../assets/cycleways.png";
+import petitions from "../assets/petitions.png";
+import autoencoder from "../assets/autoencoder.png";
+import nft from "../assets/nft.png";
+import ucisa from "../assets/ucisa.png";
+
 export interface Project {
   id: number;
   title: string;
@@ -16,7 +24,7 @@ export const projects: Project[] = [
       "Social gardening platform enabling users to manage gardens, share content, add plants, follow friends, and explore public gardens.",
     tech: ["Spring Boot", "Thymeleaf", "SQL"],
     uni: true,
-    image: "/gardeners-grove.png",
+    image: gardenersGrove,
     github:""
   },
 
@@ -27,7 +35,7 @@ export const projects: Project[] = [
       "Kanban-style Scrumboard tool with task assignment, roles, sub-tasks, drag-and-drop boards, and progress tracking.",
     tech: ["React", "Node.js", "Express", "NeonDB", "Drag & Drop"],
     uni: true,
-    image: "/scrumboard.png",
+    image: scrumboard,
     github:"https://github.com/udaydaroch/ScrumboardProject"
   },
 
@@ -38,7 +46,7 @@ export const projects: Project[] = [
       "A mapping application built with JavaFX and geospatial APIs to visualize crash data, cluster markers, and explore cycle routes.",
     tech: ["JavaFX", "SQLite", "Leaflet", "GraphHopper API", "OpenStreetMap"],
     uni: true,
-    image: "/cycleways.png",
+    image: cycleways,
     github:"https://github.com/udaydaroch/Cycleways"
   },
 
@@ -49,7 +57,7 @@ export const projects: Project[] = [
       "A full SPA supporting petition creation, user accounts, login, supporting petitions, and more. Fully API-driven backend.",
     tech: ["React", "TypeScript", "Node.js", "Express", "SQL", "MUI"],
     uni: true,
-    image: "/petitions.png",
+    image: petitions,
   },
 
   {
@@ -59,7 +67,7 @@ export const projects: Project[] = [
       "Deep learning autoencoder that reconstructs denoised images using convolutional and transpose convolutional layers.",
     tech: ["Python", "TensorFlow", "Keras", "NumPy", "Matplotlib"],
     uni: true,
-    image: "/autoencoder.png",
+    image: autoencoder,
   },
 
   {
@@ -69,7 +77,7 @@ export const projects: Project[] = [
       "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
     tech: ["Rust", "Secret Network", "Blockchain"],
     uni: true,
-    image: "/nft.png",
+    image: nft,
   },
   {
     id: 7,
@@ -78,6 +86,6 @@ export const projects: Project[] = [
       "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
     tech: ["Rust", "Secret Network", "Blockchain"],
     uni: true,
-    image: "/ucisa.png",
+    image: ucisa,
   },
 ];
