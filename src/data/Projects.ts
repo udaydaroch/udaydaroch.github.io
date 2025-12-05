@@ -67,7 +67,8 @@ export const projects: Project[] = [
     tech: ["React", "Node.js", "Express", "NeonDB", "Drag & Drop"],
     uni: true,
     image: scrumboard,
-    github:"https://github.com/udaydaroch/ScrumboardProject"
+    github:"https://github.com/udaydaroch/ScrumboardProject",
+    link:"https://scrumboard-project.vercel.app/login"
   },
 
   {
@@ -110,5 +111,7 @@ export const projects: Project[] = [
     tech: ["Rust", "Secret Network", "Blockchain"],
     uni: true,
     image: ucisa,
+    github:"https://github.com/udaydaroch/UCISAgallary",
+    link:"https://ucis-agallary.vercel.app/#"
   },
 ];
