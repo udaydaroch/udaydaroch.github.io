@@ -106,7 +106,7 @@ export const projects: Project[] = [
     id: 8,
     title: "UCISA",
     description:
-      "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
+      "A simple SPA for browsing UCISA representatives, built with React and TypeScript.",
     tech: ["Rust", "Secret Network", "Blockchain"],
     uni: true,
     image: ucisa,
