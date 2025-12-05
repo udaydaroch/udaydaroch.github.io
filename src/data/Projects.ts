@@ -52,9 +52,10 @@ export const projects: Project[] = [
     title: "NFT Marketplace",
     description:
       "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
-    tech: ["Rust", "Secret Network", "Blockchain"],
+    tech: ["Rust", "Secret Network", "Blockchain", "react", "Vite"],
     uni: true,
     image: nft,
+    github:"https://github.com/udaydaroch/NFT-marketplace"
   },
 
   {
