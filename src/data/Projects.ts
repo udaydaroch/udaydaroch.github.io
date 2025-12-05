@@ -5,7 +5,7 @@ import petitions from "../assets/petitions.png";
 import autoencoder from "../assets/autoencoder.png";
 import nft from "../assets/nft.png";
 import ucisa from "../assets/ucisa.png";
-
+import csseChatbot from "../assets/csse-chatbot.png";
 export interface Project {
   id: number;
   title: string;
@@ -29,6 +29,26 @@ export const projects: Project[] = [
 
   {
     id: 2,
+    title: "CSSE Department RAG Chatbot",
+    description:
+      "Final-year project building a full-stack chatbot for the CSSE department using a RAG pipeline with open-source Ollama models and BGE-M3 embeddings, including BERTScore-based evaluation and a user study.",
+    tech: [
+      "Python",
+      "Flask",
+      "LangChain",
+      "Ollama",
+      "BGE-M3",
+      "ChromaDB",
+      "Sqlite",
+      "BERTScore",
+      "HuggingFace",
+      "ChatGPT"
+    ],
+    uni: true,
+    image: csseChatbot,
+  },
+  {
+    id: 3,
     title: "NFT Marketplace",
     description:
       "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
@@ -38,7 +58,7 @@ export const projects: Project[] = [
   },
 
   {
-    id: 3,
+    id: 4,
     title: "Scrumboard System",
     description:
       "Kanban-style Scrumboard tool with task assignment, roles, sub-tasks, drag-and-drop boards, and progress tracking.",
@@ -49,7 +69,7 @@ export const projects: Project[] = [
   },
 
   {
-    id: 4,
+    id: 5,
     title: "Gardeners Grove",
     description:
       "Social gardening platform enabling users to manage gardens, share content, add plants, follow friends, and explore public gardens.",
@@ -60,7 +80,7 @@ export const projects: Project[] = [
   },
 
   {
-    id: 5,
+    id: 6,
     title: "Cycleways",
     description:
       "A mapping application built with JavaFX and geospatial APIs to visualize crash data, cluster markers, and explore cycle routes.",
@@ -71,7 +91,7 @@ export const projects: Project[] = [
   },
 
   {
-    id: 6,
+    id: 7,
     title: "Petitions App",
     description:
       "A full SPA supporting petition creation, user accounts, login, supporting petitions, and more. Fully API-driven backend.",
@@ -81,7 +101,7 @@ export const projects: Project[] = [
   },
 
   {
-    id: 7,
+    id: 8,
     title: "UCISA",
     description:
       "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
