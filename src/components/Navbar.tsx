@@ -6,8 +6,10 @@ const Navbar = () => {
       <div className="container d-flex justify-content-center">
 
         <ul className="navbar-nav gap-4">
+
           <li className="nav-item">
             <NavLink
+              end
               className={({ isActive }) =>
                 "nav-link fs-5" + (isActive ? " active fw-bold" : "")
               }
@@ -27,6 +29,7 @@ const Navbar = () => {
               Projects
             </NavLink>
           </li>
+
         </ul>
 
       </div>
