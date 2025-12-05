@@ -25,6 +25,7 @@ export const projects: Project[] = [
     tech: ["Python", "TensorFlow", "Keras", "NumPy", "Matplotlib"],
     uni: true,
     image: autoencoder,
+    github:"https://github.com/udaydaroch/DeepLearning"
   },
 
   {
@@ -52,7 +53,7 @@ export const projects: Project[] = [
     title: "NFT Marketplace",
     description:
       "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
-    tech: ["Rust", "Secret Network", "Blockchain", "react", "Vite"],
+    tech: ["Rust", "Secret Network", "Blockchain", "react", "Vite", "node.js", "docker", "rustc"],
     uni: true,
     image: nft,
     github:"https://github.com/udaydaroch/NFT-marketplace"
