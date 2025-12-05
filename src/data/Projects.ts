@@ -17,19 +17,28 @@ export interface Project {
   image?: string;
 }
 export const projects: Project[] = [
-  {
+    {
     id: 1,
-    title: "Gardeners Grove",
+    title: "Image Autoencoder",
     description:
-      "Social gardening platform enabling users to manage gardens, share content, add plants, follow friends, and explore public gardens.",
-    tech: ["Spring Boot", "Thymeleaf", "SQL"],
+      "Deep learning autoencoder that reconstructs denoised images using convolutional and transpose convolutional layers.",
+    tech: ["Python", "TensorFlow", "Keras", "NumPy", "Matplotlib"],
     uni: true,
-    image: gardenersGrove,
-    github:""
+    image: autoencoder,
   },
 
   {
     id: 2,
+    title: "NFT Marketplace",
+    description:
+      "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
+    tech: ["Rust", "Secret Network", "Blockchain"],
+    uni: true,
+    image: nft,
+  },
+
+  {
+    id: 3,
     title: "Scrumboard System",
     description:
       "Kanban-style Scrumboard tool with task assignment, roles, sub-tasks, drag-and-drop boards, and progress tracking.",
@@ -40,7 +49,18 @@ export const projects: Project[] = [
   },
 
   {
-    id: 3,
+    id: 4,
+    title: "Gardeners Grove",
+    description:
+      "Social gardening platform enabling users to manage gardens, share content, add plants, follow friends, and explore public gardens.",
+    tech: ["Spring Boot", "Thymeleaf", "SQL"],
+    uni: true,
+    image: gardenersGrove,
+    github:""
+  },
+
+  {
+    id: 5,
     title: "Cycleways",
     description:
       "A mapping application built with JavaFX and geospatial APIs to visualize crash data, cluster markers, and explore cycle routes.",
@@ -51,7 +71,7 @@ export const projects: Project[] = [
   },
 
   {
-    id: 4,
+    id: 6,
     title: "Petitions App",
     description:
       "A full SPA supporting petition creation, user accounts, login, supporting petitions, and more. Fully API-driven backend.",
@@ -60,25 +80,6 @@ export const projects: Project[] = [
     image: petitions,
   },
 
-  {
-    id: 5,
-    title: "Image Autoencoder",
-    description:
-      "Deep learning autoencoder that reconstructs denoised images using convolutional and transpose convolutional layers.",
-    tech: ["Python", "TensorFlow", "Keras", "NumPy", "Matplotlib"],
-    uni: true,
-    image: autoencoder,
-  },
-
-  {
-    id: 6,
-    title: "NFT Marketplace",
-    description:
-      "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
-    tech: ["Rust", "Secret Network", "Blockchain"],
-    uni: true,
-    image: nft,
-  },
   {
     id: 7,
     title: "UCISA",
