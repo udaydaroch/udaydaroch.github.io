@@ -17,30 +17,41 @@
 
 
 .typing {
-  width: 9.1ch;
+  width: 0;
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid #000;
-  animation: typing 2s steps(22), blink 0.6s step-end infinite;
+  animation:
+    pre-blink 1s step-end,              
+    typing 2s steps(22) 1s forwards,    
+    final-blink 2s step-end 3s forwards,
+    hide 0s 5s forwards;                
 }
 
-@media (max-width: 576px) {
-  .typing {
-    width: 9.4ch;
-  }
+@keyframes pre-blink {
+  0%, 100% { border-color: black; }
+  50% { border-color: transparent; }
 }
 
 @keyframes typing {
-  from {
-    width: 0;
-  }
+  from { width: 0; }
+  to { width: 9.1ch; }
 }
 
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
+@keyframes final-blink {
+  0%, 20% { border-color: black; }
+
+  40% { border-color: transparent; }  
+  55% { border-color: black; }       
+
+  70% { border-color: transparent; }  
+  85%, 100% { border-color: black; }  
 }
+
+@keyframes hide {
+  to { border-color: transparent; }
+}
+
 
 .home-profile-img {
   width: 320px;
@@ -52,12 +63,11 @@
 }
 
 .hero-name {
-  font-size: 7rem; /* desktop / default size */
+  font-size: 7rem; 
 }
 
-/* Mobile tweak */
 @media (max-width: 576px) {
   .hero-name {
-    font-size: 2rem; /* smaller on phones */
+    font-size: 2rem; 
   }
 }
