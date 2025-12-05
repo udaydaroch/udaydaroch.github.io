@@ -10,6 +10,7 @@ function App() {
 
       <div style={{ minHeight: "calc(100vh - 60px)" }}>
         <Routes>
+          <Route path="/my-portfolio/" element={ <Home />} />
           <Route path="/" element={ <Home />} />
           <Route path="/projects" element={<Projects />} />
         </Routes>
