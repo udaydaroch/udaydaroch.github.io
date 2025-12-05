@@ -29,7 +29,7 @@ export const projects: Project[] = [
 
   {
     id: 2,
-    title: "CSSE Department RAG Chatbot",
+    title: "CSSE Department Chatbot",
     description:
       "Final-year project building a full-stack chatbot for the CSSE department using a RAG pipeline with open-source Ollama models and BGE-M3 embeddings, including BERTScore-based evaluation and a user study.",
     tech: [
