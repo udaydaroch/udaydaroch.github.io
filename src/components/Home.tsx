@@ -7,7 +7,7 @@ const Home = () => {
       style={{ minHeight: "calc(100vh - 200px)" }}
     >
 
-    <div className="typing hero-name mt-4 fs-1 fs-md-2 fs-sm-3">
+    <div className="typing hero-name mt-4">
       Uday Daroch
     </div>
 
