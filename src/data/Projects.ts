@@ -16,7 +16,7 @@ export const projects: Project[] = [
       "Social gardening platform enabling users to manage gardens, share content, add plants, follow friends, and explore public gardens.",
     tech: ["Spring Boot", "Thymeleaf", "SQL"],
     uni: true,
-    image: "/src/assets/gardeners-grove.png",
+    image: "/gardeners-grove.png",
     github:""
   },
 
@@ -27,7 +27,7 @@ export const projects: Project[] = [
       "Kanban-style Scrumboard tool with task assignment, roles, sub-tasks, drag-and-drop boards, and progress tracking.",
     tech: ["React", "Node.js", "Express", "NeonDB", "Drag & Drop"],
     uni: true,
-    image: "/src/assets/scrumboard.png",
+    image: "/scrumboard.png",
     github:"https://github.com/udaydaroch/ScrumboardProject"
   },
 
@@ -38,7 +38,7 @@ export const projects: Project[] = [
       "A mapping application built with JavaFX and geospatial APIs to visualize crash data, cluster markers, and explore cycle routes.",
     tech: ["JavaFX", "SQLite", "Leaflet", "GraphHopper API", "OpenStreetMap"],
     uni: true,
-    image: "/src/assets/cycleways.png",
+    image: "/cycleways.png",
     github:"https://github.com/udaydaroch/Cycleways"
   },
 
@@ -49,7 +49,7 @@ export const projects: Project[] = [
       "A full SPA supporting petition creation, user accounts, login, supporting petitions, and more. Fully API-driven backend.",
     tech: ["React", "TypeScript", "Node.js", "Express", "SQL", "MUI"],
     uni: true,
-    image: "/src/assets/petitions.png",
+    image: "/petitions.png",
   },
 
   {
@@ -59,7 +59,7 @@ export const projects: Project[] = [
       "Deep learning autoencoder that reconstructs denoised images using convolutional and transpose convolutional layers.",
     tech: ["Python", "TensorFlow", "Keras", "NumPy", "Matplotlib"],
     uni: true,
-    image: "/src/assets/autoencoder.png",
+    image: "/autoencoder.png",
   },
 
   {
@@ -69,7 +69,7 @@ export const projects: Project[] = [
       "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
     tech: ["Rust", "Secret Network", "Blockchain"],
     uni: true,
-    image: "/src/assets/nft.png",
+    image: "/nft.png",
   },
   {
     id: 7,
@@ -78,6 +78,6 @@ export const projects: Project[] = [
       "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
     tech: ["Rust", "Secret Network", "Blockchain"],
     uni: true,
-    image: "/src/assets/ucisa.png",
+    image: "/ucisa.png",
   },
 ];
