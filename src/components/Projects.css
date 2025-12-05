@@ -27,7 +27,7 @@
 }
 
 .project-card-title {
-  font-size: 1.25rem;  /* bigger title */
+  font-size: 1.25rem;  
   font-weight: 700;
   color: #222;
   margin-bottom: 0.4rem;
@@ -41,5 +41,5 @@
 }
 
 .project-name {
-  font-size: 5rem;   /* increase this */
+  font-size: 5rem;   
 }
