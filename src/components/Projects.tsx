@@ -20,7 +20,7 @@ const Projects = () => {
 
   return (
     <div
-      className="container d-flex flex-column py-4 justify-content-center"
+      className="container d-flex flex-column justify-content-center"
     >
       <div className="project-name text-center">Projects</div>
 
