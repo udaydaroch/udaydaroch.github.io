@@ -131,7 +131,7 @@ const ContactWidget = () => {
 
               {status === "sent" && (
                 <div className="alert alert-success mt-3 mb-0 py-2">
-                  Message sent. Thanks!
+                Thanks for reaching out! I’ll get back to you as soon as I can.
                 </div>
               )}
               {status === "error" && (
