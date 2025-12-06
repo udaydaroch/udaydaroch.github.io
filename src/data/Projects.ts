@@ -75,7 +75,7 @@ export const projects: Project[] = [
     id: 5,
     title: "Gardeners Grove",
     description:
-      "Social gardening platform enabling users to manage gardens, share content, add plants, follow friends, and explore public gardens.",
+      "Social gardening platform enabling users to manage gardens, share content, add plants, follow, and explore public gardens.",
     tech: ["Spring Boot", "Thymeleaf", "SQL"],
     uni: true,
     image: gardenersGrove,
