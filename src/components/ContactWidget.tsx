@@ -1,7 +1,7 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 
-const FORM_ENDPOINT = "https://your-vercel-project.vercel.app/api/contact";
+const FORM_ENDPOINT = "https://portfolio-contact-api-gilt.vercel.app/api/contact";
 
 const ContactWidget = () => {
   const [open, setOpen] = useState(false);
