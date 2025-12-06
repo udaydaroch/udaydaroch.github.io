@@ -35,7 +35,7 @@
 
 @keyframes typing {
   from { width: 0; }
-  to { width: 9.4ch; }
+  to { width: 9.3ch; }
 }
 
 @keyframes final-blink {
@@ -68,6 +68,6 @@
 
 @media (max-width: 576px) {
   .hero-name {
-    font-size: 2rem; 
+    font-size: 4rem; 
   }
 }
