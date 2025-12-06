@@ -47,14 +47,14 @@ const ContactWidget = () => {
       {/* Floating Button */}
       <button
         type="button"
-        className="btn btn-primary rounded-circle position-fixed bottom-0 start-0 m-3 shadow"
+        className="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-3 shadow"
         style={{ width: "56px", height: "56px", zIndex: 1050 }}
         onClick={() => {
           setOpen(true);
           setStatus("idle");
         }}
       >
-        <i className="bi bi-envelope-fill"></i>
+        <i className="bi bi-chat-dots-fill fs-4"></i>
       </button>
 
       {open && (
