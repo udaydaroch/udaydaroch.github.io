@@ -40,7 +40,7 @@ const TutorModal = () => {
               className="btn btn-primary me-2"
             >
               <i className="bi bi-linkedin me-2"></i>
-              View CSSE on LinkedIn
+              View on LinkedIn
             </a>
 
             <a
@@ -49,7 +49,7 @@ const TutorModal = () => {
               rel="noreferrer"
               className="btn btn-outline-secondary"
             >
-              🌐 Visit UC Website
+              🌐 Visit Website
             </a>
           </div>
         </div>
