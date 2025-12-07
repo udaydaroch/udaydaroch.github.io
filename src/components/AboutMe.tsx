@@ -10,9 +10,11 @@ import "../components/AboutMe.css";
 const AboutMe = () => {
   return (
     <div className="container py-5">
-      {/* Intro */}
+
       <section className="mb-5 text-center text-md-start">
-        <h1 className="fw-bold mb-3">About Me</h1>
+        <h1 className="fw-bold mb-3 d-flex justify-content-center">About Me</h1>
+        <hr></hr>
+
         <p className="fs-5 text-muted mb-0">
           I’m a software engineer who enjoys building full-stack applications,
           AI tools, and practical systems that actually get used. I like taking
@@ -23,13 +25,14 @@ const AboutMe = () => {
 
       {/* Experience cards */}
       <section>
-        <h2 className="h3 fw-semibold mb-2 text-center text-md-start">
+        <h2 className="fw-semibold mb-5 text-center text-md-start d-flex justify-content-center">
           What I’ve been working on
         </h2>
-
-        <p className="text-muted small mb-4 text-center text-md-start">
+        <p className="text-muted small text-center d-flex justify-content-center">
           👉 Click any card to view more details
         </p>
+        <hr></hr>
+
 
         <div className="row g-4 align-items-stretch">
 
@@ -153,10 +156,11 @@ const AboutMe = () => {
 
       {/* How I like to work */}
       <section className="mt-5">
+         <h2 className="fw-semibold mb-2 d-flex justify-content-center">General Comments</h2>
+         <hr></hr>
+
         <div className="card about-card border-1 rounded-4 shadow-sm p-4 p-md-5">
           <div className="card-body p-0">
-            <h2 className="h4 fw-semibold mb-3">How I like to work</h2>
-
             <div className="row g-4 align-items-start">
               <div className="col-md-7">
                 <p className="mb-2 text-muted">
@@ -168,8 +172,8 @@ const AboutMe = () => {
 
                 <p className="mb-2 text-muted">
                   Once I understand the context, I break work into smaller, achievable tasks that can
-                  be delivered incrementally. I’m very action-focused: try something, see how it behaves,
-                  compare it with existing solutions, and then keep iterating.
+                  be delivered incrementally. I’m very action-focused:  see existing solutions, try doing
+                  things myself, see how it behaves,, and then keep iterating for desired results.
                 </p>
 
                 <p className="mb-0 text-muted">
