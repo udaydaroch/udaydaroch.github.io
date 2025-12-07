@@ -21,7 +21,7 @@ const UbiikModal = () => {
               <img
                 src={ubiikImg}
                 alt="Ubiik Mimomax"
-                className="img-fluid rounded-4 shadow-sm"
+                className="img-fluid rounded-4 shadow-sm border"
                 style={{ maxHeight: "320px", objectFit: "contain" }}
               />
             </div>
