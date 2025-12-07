@@ -149,7 +149,7 @@ const TutorModal = () => {
             </div>
 
             {/* Links */}
-            <div className="mt-4 d-flex flex-wrap gap-2">
+            <div className="mt-4 d-flex flex-wrap gap-2 justify-content-center">
               <a
                 href="https://www.linkedin.com/showcase/uccsse/"
                 target="_blank"

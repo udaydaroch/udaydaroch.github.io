@@ -30,25 +30,27 @@ const UbiikModal = () => {
               I work at Ubiik Mimomax as a Software Engineering Intern, modernising UI, 
               building tools around SQLite configuration, and working in a Docker-based environment.
             </p>
-
-            <a
-            href="https://www.linkedin.com/company/ubiikmimomax"
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-primary me-2"
-            >
-             <i className="bi bi-linkedin me-2"></i>
-             View on LinkedIn
-            </a>
-
-            <a
-              href="https://ubiikmimomax.com"
+            
+            <div className="mt-4 d-flex flex-wrap gap-2 justify-content-center">
+              <a
+              href="https://www.linkedin.com/company/ubiikmimomax"
               target="_blank"
               rel="noreferrer"
-              className="btn btn-outline-secondary"
-            >
-              🌐 Visit Website
-            </a>
+              className="btn btn-primary me-2"
+              >
+              <i className="bi bi-linkedin me-2"></i>
+              View on LinkedIn
+              </a>
+
+              <a
+                href="https://ubiikmimomax.com"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-outline-secondary"
+              >
+                🌐 Visit Website
+              </a>
+            </div>
           </div>
         </div>
       </div>
