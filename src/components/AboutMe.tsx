@@ -5,10 +5,12 @@ import UbiikModal from "./modals/UbiikModal";
 import FleetpinModal from "./modals/FleetpinModal";
 import TutorModal from "./modals/TutorModal";
 
+import "../components/AboutMe.css";
+
 const AboutMe = () => {
   return (
     <div className="container py-5">
-
+      {/* Intro */}
       <section className="mb-5 text-center text-md-start">
         <h1 className="fw-bold mb-3">About Me</h1>
         <p className="fs-5 text-muted mb-0">
@@ -19,6 +21,7 @@ const AboutMe = () => {
         </p>
       </section>
 
+      {/* Experience cards */}
       <section>
         <h2 className="h3 fw-semibold mb-2 text-center text-md-start">
           What I’ve been working on
@@ -28,11 +31,11 @@ const AboutMe = () => {
           👉 Click any card to view more details
         </p>
 
-        <div className="row g-4">
+        <div className="row g-4 align-items-stretch">
 
           <div className="col-12 col-md-6 col-lg-4">
             <button
-              className="card h-100 rounded-4 border border-2 shadow-lg text-start p-0"
+              className="card about-card h-100 rounded-4 border border-2 shadow-md text-start p-0"
               data-bs-toggle="modal"
               data-bs-target="#ubiikModal"
               style={{ cursor: "pointer", background: "white" }}
@@ -47,7 +50,9 @@ const AboutMe = () => {
               <hr className="my-0" />
 
               <div className="card-body">
-                <h5 className="card-title fw-semibold mb-1">Software Engineering Intern</h5>
+                <h5 className="card-title fw-semibold mb-1">
+                  Software Engineering Intern
+                </h5>
                 <p className="text-muted mb-2">Ubiik Mimomax · 2025 – Present</p>
 
                 <div className="mb-3">
@@ -61,16 +66,15 @@ const AboutMe = () => {
                 <ul className="small text-muted ps-3 mb-0">
                   <li>Modernising UI from Bootstrap 3 → 5.</li>
                   <li>Building tools to manage SQLite configuration files.</li>
-                  <li>Extending Laravel modules + reusable API workflows.</li>
+                  <li>Extending Laravel modules and reusable API workflows.</li>
                   <li>Working across Dockerised SQL data pipelines.</li>
                 </ul>
               </div>
             </button>
           </div>
-
           <div className="col-12 col-md-6 col-lg-4">
             <button
-              className="card h-100 rounded-4 border border-2 shadow-lg text-start p-0"
+              className="card about-card h-100 rounded-4 border border-2 shadow-md text-start p-0"
               data-bs-toggle="modal"
               data-bs-target="#fleetpinModal"
               style={{ cursor: "pointer", background: "white" }}
@@ -85,7 +89,9 @@ const AboutMe = () => {
               <hr className="my-0" />
 
               <div className="card-body">
-                <h5 className="card-title fw-semibold mb-1">Software Engineering Intern</h5>
+                <h5 className="card-title fw-semibold mb-1">
+                  Software Engineering Intern
+                </h5>
                 <p className="text-muted mb-2">Fleetpin · 2024 – 2025</p>
 
                 <div className="mb-3">
@@ -100,15 +106,14 @@ const AboutMe = () => {
                   <li>Optimised batch queries for GPS tracking.</li>
                   <li>Integrated backend APIs for smoother flows.</li>
                   <li>Implemented offline mode through service workers.</li>
-                  <li>Fixed UI bugs & improved critical UX paths.</li>
+                  <li>Fixed UI bugs and improved critical UX paths.</li>
                 </ul>
               </div>
             </button>
           </div>
-
           <div className="col-12 col-md-6 col-lg-4">
             <button
-              className="card h-100 rounded-4 border border-2 shadow-lg text-start p-0"
+              className="card about-card h-100 rounded-4 border border-2 shadow-md text-start p-0"
               data-bs-toggle="modal"
               data-bs-target="#tutorModal"
               style={{ cursor: "pointer", background: "white" }}
@@ -125,7 +130,7 @@ const AboutMe = () => {
               <div className="card-body">
                 <h5 className="card-title fw-semibold mb-1">Programming Tutor</h5>
                 <p className="text-muted mb-2">
-                  University of Canterbury · COSC121 & COSC131 · 2025
+                  University of Canterbury · COSC121 &amp; COSC131 · 2025
                 </p>
 
                 <div className="mb-3">
@@ -138,7 +143,7 @@ const AboutMe = () => {
                   <li>Taught programming fundamentals step-by-step.</li>
                   <li>Helped debug student code and improve reasoning.</li>
                   <li>Supported labs, assignments, and tutorials.</li>
-                  <li>Helped run bootcamps & exam prep sessions.</li>
+                  <li>Helped run bootcamps and exam prep sessions.</li>
                 </ul>
               </div>
             </button>
@@ -146,14 +151,81 @@ const AboutMe = () => {
         </div>
       </section>
 
+      {/* How I like to work */}
       <section className="mt-5">
-        <div className="p-4 p-md-5 bg-light rounded-4 shadow-sm">
-          <h2 className="h4 fw-semibold mb-3">How I like to work</h2>
-          <p className="mb-0 text-muted">
-            Across internships and tutoring, I’ve spent a lot of time reading other people’s code,
-            improving existing systems, and explaining ideas clearly. I enjoy owning features
-            end-to-end, collaborating with teams, and leaving systems cleaner than I found them.
-          </p>
+        <div className="card about-card border-1 rounded-4 shadow-sm p-4 p-md-5">
+          <div className="card-body p-0">
+            <h2 className="h4 fw-semibold mb-3">How I like to work</h2>
+
+            <div className="row g-4 align-items-start">
+              <div className="col-md-7">
+                <p className="mb-2 text-muted">
+                  I enjoy collaborating with people — walking through ideas on a whiteboard,
+                  reviewing code together, and asking questions until everyone is clear on the
+                  problem we’re solving. I like understanding how a codebase is structured:
+                  how modules fit together, where data flows, and which parts of the system own what.
+                </p>
+
+                <p className="mb-2 text-muted">
+                  Once I understand the context, I break work into smaller, achievable tasks that can
+                  be delivered incrementally. I’m very action-focused: try something, see how it behaves,
+                  compare it with existing solutions, and then keep iterating.
+                </p>
+
+                <p className="mb-0 text-muted">
+                  I aim to leave things cleaner than I found them — whether that’s a feature, a test,
+                  or a small internal tool someone else will use later.
+                </p>
+              </div>
+
+              <div className="col-md-5">
+                <ul className="list-unstyled mb-0">
+                  <li className="d-flex align-items-start mb-2">
+                    <span className="me-2 text-primary"><i className="bi bi-people-fill"></i></span>
+                    <span className="small text-muted">
+                      Enjoy discussing ideas and collaborating with teammates.
+                    </span>
+                  </li>
+
+                  <li className="d-flex align-items-start mb-2">
+                    <span className="me-2 text-primary"><i className="bi bi-diagram-3"></i></span>
+                    <span className="small text-muted">
+                      Like understanding architecture, codebase structure, and data flow.
+                    </span>
+                  </li>
+
+                  <li className="d-flex align-items-start mb-2">
+                    <span className="me-2 text-primary"><i className="bi bi-list-check"></i></span>
+                    <span className="small text-muted">
+                      Break problems into clear, achievable tasks.
+                    </span>
+                  </li>
+
+                  <li className="d-flex align-items-start mb-2">
+                    <span className="me-2 text-primary"><i className="bi bi-arrow-repeat"></i></span>
+                    <span className="small text-muted">
+                      Take feedback positively and use it to improve the work at hand.
+                    </span>
+                  </li>
+
+                  <li className="d-flex align-items-start mb-2">
+                    <span className="me-2 text-primary"><i className="bi bi-lightning-charge-fill"></i></span>
+                    <span className="small text-muted">
+                      Take an actionable, experiment-first approach to learning.
+                    </span>
+                  </li>
+
+                  <li className="d-flex align-items-start">
+                    <span className="me-2 text-primary"><i className="bi bi-journal-code"></i></span>
+                    <span className="small text-muted">
+                      Learn from existing solutions and leave codebases cleaner than before.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+          </div>
         </div>
       </section>
 
