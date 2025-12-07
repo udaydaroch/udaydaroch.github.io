@@ -166,7 +166,7 @@ const TutorModal = () => {
                 rel="noreferrer"
                 className="btn btn-outline-secondary"
               >
-                🌐 Visit UC Website
+                🌐 Visit Website
               </a>
             </div>
 

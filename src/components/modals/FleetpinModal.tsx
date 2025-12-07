@@ -163,7 +163,7 @@ const FleetpinModal = () => {
                 className="btn btn-primary"
               >
                 <i className="bi bi-linkedin me-2"></i>
-                View Fleetpin on LinkedIn
+                View on LinkedIn
               </a>
 
               <a
@@ -172,7 +172,7 @@ const FleetpinModal = () => {
                 rel="noreferrer"
                 className="btn btn-outline-secondary"
               >
-                🌐 Visit Fleetpin Website
+                🌐 Visit Website
               </a>
             </div>
           </div>
