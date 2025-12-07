@@ -23,6 +23,7 @@ const Projects = () => {
       className="container d-flex flex-column justify-content-center"
     >
       <div className="project-name text-center">Projects</div>
+      <hr></hr>
 
       <div className="row g-3 flex-grow-1">
         {currentProjects.map((project) => (
