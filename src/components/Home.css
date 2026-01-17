@@ -62,12 +62,26 @@
   box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.15);
 }
 
-.hero-name {
-  font-size: 7rem; 
+/* Ensure high specificity and fallback */
+.typing.hero-name {
+    font-size: 10vw; /* scales with viewport width */
+  font-size: 7rem; /* Default for large screens */
+}
+
+@media (max-width: 1200px) {
+  .typing.hero-name {
+    font-size: 5rem; /* Large tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .typing.hero-name {
+    font-size: 4rem; /* Small tablets */
+  }
 }
 
 @media (max-width: 576px) {
-  .hero-name {
-    font-size: 4rem; 
+  .typing.hero-name {
+    font-size: 3rem; /* Mobile phones */
   }
 }
