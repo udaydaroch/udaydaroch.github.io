@@ -15,6 +15,7 @@
   animation-delay: 0.4s;
 }
 
+
 .typing {
   width: 0;
   white-space: nowrap;
@@ -32,28 +33,17 @@
   50% { border-color: transparent; }
 }
 
-.typing.hero-name {
-  font-size: 10vw;
-  width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 3px solid #000;
-  animation:
-    pre-blink 1s step-end,
-    typing-responsive 2s steps(22) 1s forwards,
-    final-blink 2s step-end 3s forwards,
-    hide 0s 5s forwards;
-}
-
-@keyframes typing-responsive {
+@keyframes typing {
   from { width: 0; }
-  to { width: 100%; }
+  to { width: calc(9.3ch + 0.5em); } 
 }
 
 @keyframes final-blink {
   0%, 20% { border-color: black; }
+
   40% { border-color: transparent; }  
   55% { border-color: black; }       
+
   70% { border-color: transparent; }  
   85%, 100% { border-color: black; }  
 }
@@ -61,6 +51,7 @@
 @keyframes hide {
   to { border-color: transparent; }
 }
+
 
 .home-profile-img {
   width: 320px;
@@ -71,21 +62,12 @@
   box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive breakpoints */
-@media (max-width: 1200px) {
-  .typing.hero-name {
-    font-size: 5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .typing.hero-name {
-    font-size: 4rem;
-  }
+.hero-name {
+  font-size: 7rem; 
 }
 
 @media (max-width: 576px) {
-  .typing.hero-name {
-    font-size: 3rem;
+  .hero-name {
+    font-size: 3rem; 
   }
 }
