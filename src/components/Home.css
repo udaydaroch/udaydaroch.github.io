@@ -15,7 +15,26 @@
   animation-delay: 0.4s;
 }
 
+.home-profile-img {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #ddd;
+  box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.15);
+}
 
+.hero-name {
+  font-size: 7rem; 
+}
+
+@media (max-width: 576px) {
+  .hero-name {
+    font-size: 3rem; 
+  }
+}
+
+/* 
 .typing {
   width: 0;
   white-space: nowrap;
@@ -35,7 +54,7 @@
 
 @keyframes typing {
   from { width: 0; }
-  to { width: calc(9.3ch + 0.5em); } 
+  to { width: var(--text-width); } 
 }
 
 @keyframes final-blink {
@@ -50,24 +69,4 @@
 
 @keyframes hide {
   to { border-color: transparent; }
-}
-
-
-.home-profile-img {
-  width: 320px;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #ddd;
-  box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.15);
-}
-
-.hero-name {
-  font-size: 7rem; 
-}
-
-@media (max-width: 576px) {
-  .hero-name {
-    font-size: 3rem; 
-  }
-}
+} */
