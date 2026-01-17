@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "predelete": "rm -rf build",
     "delete": "gh-pages -d build",
-    "predeloy": "npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
