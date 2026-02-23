@@ -188,4 +188,5 @@ const UbiikModal = () => {
   );
 };
 
+
 export default UbiikModal;
