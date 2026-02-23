@@ -10,6 +10,6 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/my-portfolio/',   // ← THIS is the key
+  base: '/'
 
 })
