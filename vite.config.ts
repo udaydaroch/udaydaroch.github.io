@@ -10,6 +10,6 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/'
+  base: '/my-portfolio/',  // MUST match repo name exactly
 
 })
