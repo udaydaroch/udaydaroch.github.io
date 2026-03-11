@@ -6,6 +6,8 @@ import autoencoder from "../assets/autoencoder.png";
 import nft from "../assets/nft.png";
 import ucisa from "../assets/ucisa.png";
 import csseChatbot from "../assets/csse-chatbot.png";
+import speedWash from "../assets/SpeedWash.png";
+
 export interface Project {
   id: number;
   title: string;
@@ -13,11 +15,35 @@ export interface Project {
   tech: string[];
   link?: string;
   github?: string;
-  uni?: boolean; // <-- marks university projects
+  uni?: boolean;
   image?: string;
 }
+
 export const projects: Project[] = [
-    {
+  {
+    id: 0,
+    title: "Speedwash",
+    description:
+      "Full-stack SaaS platform for a car wash business, built for a private client in India. Customers can register, book appointments, and manage their vehicle history. Admins have a separate dashboard to manage bookings, services, users, and editable page content. The React frontend and Node.js/Express REST API are independently containerised with Docker and deployed to Azure Container Apps via Azure Container Registry. CI/CD pipelines in GitLab automate build, push, and deployment on every commit. Auth uses JWT access and refresh token rotation with role-based access control. Database is PostgreSQL hosted on Neon serverless, accessed via Sequelize ORM.",
+    tech: [
+      "React",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Sequelize",
+      "Docker",
+      "Azure Container Apps",
+      "Azure Container Registry",
+      "GitLab CI/CD",
+      "JWT",
+      "Nginx",
+      "Zustand",
+    ],
+    image:speedWash,
+    link: "https://speedwash-frontend.lemonsmoke-1403fb9d.uksouth.azurecontainerapps.io",
+  },
+
+  {
     id: 1,
     title: "Image Autoencoder",
     description:
@@ -25,7 +51,7 @@ export const projects: Project[] = [
     tech: ["Python", "TensorFlow", "Keras", "NumPy", "Matplotlib"],
     uni: true,
     image: autoencoder,
-    github:"https://github.com/udaydaroch/DeepLearning"
+    github: "https://github.com/udaydaroch/DeepLearning",
   },
 
   {
@@ -43,11 +69,12 @@ export const projects: Project[] = [
       "Sqlite",
       "BERTScore",
       "HuggingFace",
-      "ChatGPT"
+      "ChatGPT",
     ],
     uni: true,
     image: csseChatbot,
   },
+
   {
     id: 3,
     title: "NFT Marketplace",
@@ -56,7 +83,7 @@ export const projects: Project[] = [
     tech: ["Rust", "Secret Network", "Blockchain", "react", "Vite", "node.js", "docker", "rustc"],
     uni: true,
     image: nft,
-    github:"https://github.com/udaydaroch/NFT-marketplace"
+    github: "https://github.com/udaydaroch/NFT-marketplace",
   },
 
   {
@@ -67,8 +94,8 @@ export const projects: Project[] = [
     tech: ["React", "Node.js", "Express", "NeonDB", "Drag & Drop"],
     uni: true,
     image: scrumboard,
-    github:"https://github.com/udaydaroch/ScrumboardProject",
-    link:"https://scrumboard-project.vercel.app/login"
+    github: "https://github.com/udaydaroch/ScrumboardProject",
+    link: "https://scrumboard-project.vercel.app/login",
   },
 
   {
@@ -79,7 +106,7 @@ export const projects: Project[] = [
     tech: ["Spring Boot", "Thymeleaf", "SQL"],
     uni: true,
     image: gardenersGrove,
-    github:""
+    github: "",
   },
 
   {
@@ -90,7 +117,7 @@ export const projects: Project[] = [
     tech: ["JavaFX", "SQLite", "Leaflet", "GraphHopper API", "OpenStreetMap"],
     uni: true,
     image: cycleways,
-    github:"https://github.com/udaydaroch/Cycleways"
+    github: "https://github.com/udaydaroch/Cycleways",
   },
 
   {
@@ -111,7 +138,7 @@ export const projects: Project[] = [
     tech: ["Rust", "Secret Network", "Blockchain"],
     uni: true,
     image: ucisa,
-    github:"https://github.com/udaydaroch/UCISAgallary",
-    link:"https://ucis-agallary.vercel.app/#"
+    github: "https://github.com/udaydaroch/UCISAgallary",
+    link: "https://ucis-agallary.vercel.app/#",
   },
 ];
