@@ -24,7 +24,7 @@ export const projects: Project[] = [
     id: 0,
     title: "Speedwash",
     description:
-      "Full-stack SaaS platform for a car wash business, built for a private client in India. Customers can register, book appointments, and manage their vehicle history. Admins have a separate dashboard to manage bookings, services, users, and editable page content. The React frontend and Node.js/Express REST API are independently containerised with Docker and deployed to Azure Container Apps via Azure Container Registry. CI/CD pipelines in GitLab automate build, push, and deployment on every commit. Auth uses JWT access and refresh token rotation with role-based access control. Database is PostgreSQL hosted on Neon serverless, accessed via Sequelize ORM.",
+      "Full-stack SaaS car wash platform for a private client in India with customer booking, admin dashboard, and CMS content editing. Deployed on Azure Container Apps via Docker and GitLab CI/CD.",
     tech: [
       "React",
       "Node.js",
