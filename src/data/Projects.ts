@@ -42,7 +42,7 @@ export const projects: Project[] = [
       "Nginx",
       "JWT",
     ],
-    link: "http://k8s-prism-prisming-8596357315-1014118624.ap-southeast-2.elb.amazonaws.com",
+    // link: "http://k8s-prism-prisming-8596357315-1014118624.ap-southeast-2.elb.amazonaws.com",
     image:mimiPrism
   },
   {
