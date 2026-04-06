@@ -1,0 +1,180 @@
+/* ═══════════════════════════════════════════════════════════
+   SHARED THEME  —  import this in every page
+   ═══════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Tokens ── */
+:root {
+  --bg:            #0a0c12;       /* page background */
+  --bg-surface:    #0f111a;       /* card / panel bg */
+  --bg-raised:     #14172200;     /* hover surface */
+
+  --accent:        #7c8fff;       /* primary accent — muted indigo, not blazing blue */
+  --accent-dim:    rgba(124,143,255,0.12);
+  --accent-border: rgba(124,143,255,0.18);
+  --accent-glow:   rgba(124,143,255,0.08);
+
+  --purple:        #a78bfa;       /* secondary accent */
+  --purple-dim:    rgba(167,139,250,0.10);
+
+  --text-primary:  #e8eaf2;
+  --text-secondary:#8892aa;
+  --text-dim:      #454e66;
+
+  --grid-line:     rgba(124,143,255,0.045); /* very subtle grid */
+  --divider:       rgba(124,143,255,0.10);
+
+  --font-display:  'Syne', sans-serif;
+  --font-mono:     'DM Mono', monospace;
+}
+
+/* ── Global page shell ── */
+.page-shell {
+  position: relative;
+  min-height: calc(100vh - 60px);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* Animated grid — same across all pages */
+.page-shell::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  animation: shell-grid-pan 8s linear infinite;
+}
+
+/* Soft vignette so grid fades at edges */
+.page-shell::after {
+  content: "";
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 10%,
+    var(--accent-glow) 0%, transparent 70%);
+}
+
+@keyframes shell-grid-pan {
+  from { background-position: 0 0; }
+  to   { background-position: 44px 44px; }
+}
+
+/* ── Shared inner wrapper ── */
+.page-inner {
+  position: relative; z-index: 1;
+}
+
+/* ── Shared eyebrow ── */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent);
+  display: flex; align-items: center; gap: 10px;
+  justify-content: center;
+}
+.eyebrow::before,
+.eyebrow::after {
+  content: ""; display: block;
+  width: 24px; height: 1px;
+  background: var(--accent); opacity: 0.45;
+}
+
+/* ── Shared display heading ── */
+.display-heading {
+  font-family: var(--font-display);
+  font-weight: 800; line-height: 0.95;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg,
+    #ffffff   0%,
+    #c8d0f0  35%,
+    var(--accent) 65%,
+    var(--purple) 100%);
+  background-size: 280% 280%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heading-shimmer 8s ease infinite;
+}
+@keyframes heading-shimmer {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ── Shared section underline ── */
+.section-rule {
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--purple));
+  border-radius: 2px;
+  margin: 1rem auto 0;
+}
+
+/* ── Shared scroll reveal ── */
+.sr-block {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.sr-block.sr-visible { opacity: 1; transform: translateY(0); }
+
+.sr-item { opacity: 0; transform: translateY(24px); }
+.sr-item.sr-visible,
+.sr-visible .sr-item {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+/* ── Shared dark glass card ── */
+.glass-card {
+  background: rgba(255,255,255,0.028);
+  border: 1px solid var(--accent-border);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  transition:
+    transform 0.3s cubic-bezier(.34,1.56,.64,1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+.glass-card:hover {
+  transform: translateY(-7px) scale(1.015);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,143,255,0.35);
+  border-color: rgba(124,143,255,0.4);
+}
+
+/* ── Shared mono badge ── */
+.mono-badge {
+  font-family: var(--font-mono);
+  font-size: 0.63rem; letter-spacing: 0.04em;
+  padding: 3px 9px; border-radius: 999px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: rgba(200,210,255,0.75);
+}
+
+/* ── Shared ghost button ── */
+.ghost-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 20px; border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: rgba(200,210,255,0.8);
+  cursor: pointer; text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative; overflow: hidden;
+}
+.ghost-btn::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(124,143,255,0.12), transparent);
+  opacity: 0; transition: opacity 0.2s ease;
+}
+.ghost-btn:hover {
+  border-color: rgba(124,143,255,0.55);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124,143,255,0.18);
+}
+.ghost-btn:hover::before { opacity: 1; }
+.ghost-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
