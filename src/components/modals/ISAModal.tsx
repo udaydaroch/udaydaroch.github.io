@@ -1,3 +1,5 @@
+import { ModalCloseButton } from "../../hooks/useModalClose";
+
 const ISAModal = () => {
   return (
     <div
@@ -18,11 +20,7 @@ const ISAModal = () => {
                 University of Canterbury · Feb 2024 – Nov 2024 · 10 months
               </p>
             </div>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
+            <ModalCloseButton modalId="isaModal" />
           </div>
 
           <div

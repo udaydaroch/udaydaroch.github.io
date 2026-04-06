@@ -1,3 +1,5 @@
+import { ModalCloseButton } from "../../hooks/useModalClose";
+
 const PizzaHutModal = () => {
   return (
     <div
@@ -18,11 +20,7 @@ const PizzaHutModal = () => {
                 Pizza Hut · Oct 2023 – Jun 2024 · 9 months · Christchurch, NZ
               </p>
             </div>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
+            <ModalCloseButton modalId="pizzaHutModal" />
           </div>
 
           <div

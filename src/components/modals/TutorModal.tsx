@@ -1,4 +1,5 @@
 import tutorImg from "../../assets/tutor.png";
+import { ModalCloseButton } from "../../hooks/useModalClose";
 
 const TutorModal = () => {
   return (
@@ -22,7 +23,7 @@ const TutorModal = () => {
                 COSC121 · COSC131 · CSSE Department · 2025
               </p>
             </div>
-            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
+            <ModalCloseButton modalId="tutorModal" />
           </div>
 
           {/* Scrollable body */}

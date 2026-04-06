@@ -1,3 +1,5 @@
+import { ModalCloseButton } from "../../hooks/useModalClose";
+
 const PakNSaveModal = () => {
   return (
     <div
@@ -18,11 +20,7 @@ const PakNSaveModal = () => {
                 PAK'nSAVE · Dec 2020 – Aug 2021 · 9 months · Papanui Road, Christchurch
               </p>
             </div>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
+            <ModalCloseButton modalId="paknsaveModal" />
           </div>
 
           <div

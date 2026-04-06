@@ -1,4 +1,5 @@
 import fleetpinImg from "../../assets/fleetpin.png";
+import { ModalCloseButton } from "../../hooks/useModalClose";
 
 const FleetpinModal = () => {
   return (
@@ -20,11 +21,7 @@ const FleetpinModal = () => {
                 GPS tracking platform · 2024 – 2025 · Christchurch, NZ
               </p>
             </div>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
+            <ModalCloseButton modalId="fleetpinModal" />
           </div>
 
           <div

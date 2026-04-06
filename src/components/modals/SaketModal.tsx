@@ -1,3 +1,5 @@
+import { ModalCloseButton } from "../../hooks/useModalClose";
+
 const SaketModal = () => {
   return (
     <div
@@ -18,11 +20,7 @@ const SaketModal = () => {
                 Saket Indian Restaurant · Feb 2017 – Nov 2019 · 2 yrs 10 months · Edgeware Road, Christchurch
               </p>
             </div>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
+            <ModalCloseButton modalId="saketModal" />
           </div>
 
           <div

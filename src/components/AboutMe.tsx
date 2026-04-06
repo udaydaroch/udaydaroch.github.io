@@ -301,7 +301,7 @@ const AboutMe = () => {
 
         /* Override Bootstrap modals to look dark */
         .modal-content{background:#0f111a!important;border:1px solid var(--accent-border)!important;color:var(--text-primary)!important;}
-        .modal-header{border-bottom:1px solid var(--divider)!important;}
+        .modal-header{border-bottom:1px solid var(--divider)!important;align-items:flex-start!important;}
         .modal-title,.modal-body h5,.modal-body h6{color:var(--text-primary)!important;}
         .modal-body p,.modal-body li,.modal-body .text-muted{color:var(--text-secondary)!important;}
         .modal-body .bg-light{background:rgba(255,255,255,0.04)!important;border-color:var(--accent-border)!important;}
@@ -398,10 +398,10 @@ const AboutMe = () => {
             <GeneralComments />
           </div>
 
-          <UbiikModal/><FleetpinModal/><TutorModal/>
-          <ISAModal/><PizzaHutModal/><PakNSaveModal/><SaketModal/>
         </div>
       </div>
+      <UbiikModal/><FleetpinModal/><TutorModal/>
+      <ISAModal/><PizzaHutModal/><PakNSaveModal/><SaketModal/>
     </>
   );
 };
