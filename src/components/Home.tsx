@@ -163,10 +163,6 @@ const Home = () => (
           </a>
         </div>
       </div>
-      <div className="scroll-hint">
-        <div className="scroll-hint-bar"/>
-        <span>scroll</span>
-      </div>
     </div>
   </>
 );
