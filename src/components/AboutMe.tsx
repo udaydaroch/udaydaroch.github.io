@@ -63,11 +63,11 @@ const FILTERS: {key:FilterKey;label:string;icon:string}[] = [
 ];
 
 const CYCLING_WORDS = [
-  {text:"engineer.",     color:"#7c8fff"},
-  {text:"tutor.",        color:"#a78bfa"},
-  {text:"team player.",  color:"#5cb8a0"},
-  {text:"problem solver.",color:"#d4924a"},
-  {text:"customer-first.",color:"#c47070"},
+  {text:"an engineer.",     color:"#7c8fff"},
+  {text:"a tutor.",        color:"#a78bfa"},
+  {text:"a team player.",  color:"#5cb8a0"},
+  {text:"a problem solver.",color:"#d4924a"},
+  {text:"customer-focused.",color:"#c47070"},
 ];
 
 function CyclingWord() {
@@ -89,7 +89,7 @@ function CyclingWord() {
     return ()=>clearTimeout(t);
   },[disp,phase,wi]);
   return (
-    <span style={{color:CYCLING_WORDS[wi].color,transition:"color 0.3s ease",display:"inline-block",minWidth:"2ch"}}>
+    <span style={{color:CYCLING_WORDS[wi].color,transition:"color 0.3s ease"}}>
       {disp}
       <span style={{display:"inline-block",width:"3px",height:"0.85em",background:CYCLING_WORDS[wi].color,
         marginLeft:"2px",verticalAlign:"middle",animation:"aboutCursorBlink 1s step-end infinite",borderRadius:"1px"}}/>
@@ -228,7 +228,7 @@ const AboutMe = () => {
         @media(max-width:576px){.about-hero{padding:2rem 1.25rem;}}
 
         .about-headline {
-          font-family:var(--font-display); font-weight:800; line-height:1.1;
+          font-family:var(--font-display); font-weight:800; line-height:1.25;
           font-size:clamp(2rem,5vw,3.2rem); color:var(--text-primary);
           margin:0 0 1rem; animation:ab-fadeUp 0.45s 0.08s ease both;
         }
@@ -264,6 +264,7 @@ const AboutMe = () => {
           border-radius:999px; padding:7px 16px; font-family:var(--font-mono);
           font-size:0.78rem; font-weight:500; cursor:pointer;
           transition:all 0.18s ease; color:var(--text-secondary);
+          overflow:visible; line-height:1.4;
         }
         .ab-filter-pill:hover{border-color:rgba(124,143,255,0.45);color:var(--text-primary);background:rgba(124,143,255,0.07);}
         .ab-filter-pill.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(124,143,255,0.25);}
@@ -319,7 +320,8 @@ const AboutMe = () => {
             <DotGrid />
             <div style={{position:"relative",zIndex:1}}>
               <p className="eyebrow" style={{justifyContent:"flex-start",marginBottom:"0.6rem",animation:"ab-fadeUp 0.45s ease both"}}>About Me</p>
-              <h1 className="about-headline">I'm a&nbsp;<CyclingWord /></h1>
+              <h1 className="about-headline">I'm&nbsp;<CyclingWord /></h1>
+              <br></br>
               <p className="about-body">
                 Across engineering internships, tutoring, and years of customer-facing work —
                 the throughline is the same: care about the people you're serving and leave
