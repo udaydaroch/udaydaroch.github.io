@@ -8,6 +8,7 @@ import ucisa from "../assets/ucisa.png";
 import csseChatbot from "../assets/csse-chatbot.png";
 import speedWash from "../assets/SpeedWash.png";
 import mimiPrism from "../assets/prism.png";
+import KiwiSpend from "../assets/kiwispend.png";
 
 export interface Project {
   id: number;
@@ -23,6 +24,24 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 0,
+    title: "KiwiSpend",
+    description:
+      "A personal weekly expense tracker PWA with multi-account support, Neon PostgreSQL backend, and weekly summary reports in PDF and CSV. Built with a Node.js serverless API on Vercel, JWT auth, and installable on iPhone via Safari.",
+    tech: [
+      "Node.js",
+      "PostgreSQL",
+      "NeonDB",
+      "Vercel",
+      "JWT",
+      "PWA",
+      "PDF Generation",
+      "REST API",
+    ],
+    image: KiwiSpend,
+    link: "https://kiwispend-frontend.vercel.app",
+  },
+  {
+    id: 1,
     title: "Mini Prism",
     description:
       "Cloud-native Point of Sale and inventory system built on AWS EKS. Three Spring Boot microservices (auth, inventory, POS) each with their own PostgreSQL database, a React frontend proxied via Nginx, JWT auth, and zero-downtime rolling deployments on Kubernetes.",
@@ -42,11 +61,10 @@ export const projects: Project[] = [
       "Nginx",
       "JWT",
     ],
-    // link: "http://k8s-prism-prisming-8596357315-1014118624.ap-southeast-2.elb.amazonaws.com",
-    image:mimiPrism
+    image: mimiPrism,
   },
   {
-    id: 1,
+    id: 2,
     title: "Speedwash",
     description:
       "Full-stack SaaS car wash platform for a private client in India with customer booking, admin dashboard, and CMS content editing. Deployed on Azure Container Apps via Docker and GitLab CI/CD.",
@@ -68,7 +86,7 @@ export const projects: Project[] = [
     link: "https://speedwash-frontend.lemonsmoke-1403fb9d.uksouth.azurecontainerapps.io",
   },
   {
-    id: 2,
+    id: 3,
     title: "Image Autoencoder",
     description:
       "Deep learning autoencoder that reconstructs denoised images using convolutional and transpose convolutional layers.",
@@ -78,7 +96,7 @@ export const projects: Project[] = [
     github: "https://github.com/udaydaroch/DeepLearning",
   },
   {
-    id: 3,
+    id: 4,
     title: "CSSE Department Chatbot",
     description:
       "Final-year project building a full-stack chatbot for the CSSE department using a RAG pipeline with open-source Ollama models and BGE-M3 embeddings, including BERTScore-based evaluation and a user study.",
@@ -98,7 +116,7 @@ export const projects: Project[] = [
     image: csseChatbot,
   },
   {
-    id: 4,
+    id: 5,
     title: "NFT Marketplace",
     description:
       "Smart contract enabling listing, purchasing, and managing NFTs with public/private metadata on Secret Network.",
@@ -108,7 +126,7 @@ export const projects: Project[] = [
     github: "https://github.com/udaydaroch/NFT-marketplace",
   },
   {
-    id: 5,
+    id: 6,
     title: "Scrumboard System",
     description:
       "Kanban-style Scrumboard tool with task assignment, roles, sub-tasks, drag-and-drop boards, and progress tracking.",
@@ -119,7 +137,7 @@ export const projects: Project[] = [
     link: "https://scrumboard-project.vercel.app/login",
   },
   {
-    id: 6,
+    id: 7,
     title: "Gardeners Grove",
     description:
       "Social gardening platform enabling users to manage gardens, share content, add plants, follow, and explore public gardens.",
@@ -129,7 +147,7 @@ export const projects: Project[] = [
     github: "",
   },
   {
-    id: 7,
+    id: 8,
     title: "Cycleways",
     description:
       "A mapping application built with JavaFX and geospatial APIs to visualize crash data, cluster markers, and explore cycle routes.",
@@ -139,7 +157,7 @@ export const projects: Project[] = [
     github: "https://github.com/udaydaroch/Cycleways",
   },
   {
-    id: 8,
+    id: 9,
     title: "Petitions App",
     description:
       "A full SPA supporting petition creation, user accounts, login, supporting petitions, and more. Fully API-driven backend.",
@@ -148,7 +166,7 @@ export const projects: Project[] = [
     image: petitions,
   },
   {
-    id: 9,
+    id: 10,
     title: "UCISA",
     description:
       "A simple SPA for browsing UCISA representatives, built with React and TypeScript.",
