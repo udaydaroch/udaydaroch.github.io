@@ -38,7 +38,6 @@ export const projects: Project[] = [
       "REST API",
     ],
     image: KiwiSpend,
-    // link: "https://kiwispend-frontend.vercel.app",
   },
   {
     id: 1,
@@ -83,7 +82,6 @@ export const projects: Project[] = [
       "Zustand",
     ],
     image: speedWash,
-    // link: "https://speedwash-frontend.lemonsmoke-1403fb9d.uksouth.azurecontainerapps.io",
   },
   {
     id: 3,
