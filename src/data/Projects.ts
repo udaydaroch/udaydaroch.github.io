@@ -9,6 +9,7 @@ import csseChatbot from "../assets/csse-chatbot.png";
 import speedWash from "../assets/SpeedWash.png";
 import mimiPrism from "../assets/prism.png";
 import KiwiSpend from "../assets/KiwiSpend.png";
+import tableTap from "../assets/tabletap.png";
 
 export interface Project {
   id: number;
@@ -82,6 +83,25 @@ export const projects: Project[] = [
       "Zustand",
     ],
     image: speedWash,
+  },
+  {
+    id: 11,
+    title: "TableTap",
+    description:
+      "Ordering software for restaurants: waiters take orders on their phones and the kitchen sees them instantly. Runs inside the restaurant so it works without internet, with kitchen station routing, network printers, stock tracking, bill splitting and a drag-and-drop floor plan designer with undo/redo.",
+    tech: [
+      "Java 21",
+      "Spring Boot 3",
+      "React",
+      "Vite",
+      "PostgreSQL",
+      "Docker",
+      "Stripe",
+      "Azure Container Apps",
+      "AWS App Runner",
+    ],
+    image: tableTap,
+    github: "https://github.com/udaydaroch/tabletap",
   },
   {
     id: 3,
