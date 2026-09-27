@@ -1,7 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import ubiikImg from "../assets/ubiik.png";
-import fleetpinImg from "../assets/fleetpin.png";
-import tutorImg from "../assets/tutor.png";
 import UbiikModal from "./modals/UbiikModal";
 import FleetpinModal from "./modals/FleetpinModal";
 import TutorModal from "./modals/TutorModal";
@@ -11,49 +8,8 @@ import PakNSaveModal from "./modals/PakNSaveModal";
 import SaketModal from "./modals/SaketModal";
 import GeneralComments from "./modals/GeneralCommentModal";
 import "./theme.css";
+import { experiences, type Experience, type FilterKey } from "../data/Experience";
 import "../components/AboutMe.css";
-
-type FilterKey = "all" | "engineering" | "service" | "community";
-interface Experience {
-  id: string; category: FilterKey[]; modalTarget: string;
-  image?: string; iconClass?: string; iconBg?: string; iconColor?: string;
-  title: string; subtitle: string; period: string; badges: string[]; bullets: string[];
-}
-
-const experiences: Experience[] = [
-  { id:"ubiik", category:["engineering"], modalTarget:"#ubiikModal", image:ubiikImg,
-    title:"Software Engineering Intern", subtitle:"Ubiik Mimomax", period:"2025 – Present",
-    badges:["Laravel","PHP","Bootstrap 5","Docker","SQLite / PostgreSQL"],
-    bullets:["Modernising UI from Bootstrap 3 → 5.","Building tools to manage SQLite configuration files.","Extending Laravel modules and reusable API workflows.","Working across Dockerised SQL data pipelines."] },
-  { id:"fleetpin", category:["engineering"], modalTarget:"#fleetpinModal", image:fleetpinImg,
-    title:"Software Engineering Intern", subtitle:"Fleetpin", period:"2024 – 2025",
-    badges:["Vue.js","REST APIs","Service Workers","SQL","Scala"],
-    bullets:["Optimised batch queries for GPS tracking.","Integrated backend APIs for smoother flows.","Implemented offline mode through service workers.","Fixed UI bugs and improved critical UX paths."] },
-  { id:"tutor", category:["engineering","community"], modalTarget:"#tutorModal", image:tutorImg,
-    title:"Programming Tutor", subtitle:"University of Canterbury · COSC121 & COSC131", period:"2025",
-    badges:["Python","Problem Solving","Teaching"],
-    bullets:["Taught programming fundamentals step-by-step.","Helped debug student code and improve reasoning.","Supported labs, assignments, and tutorials.","Helped run bootcamps and exam prep sessions."] },
-  { id:"isa", category:["community"], modalTarget:"#isaModal",
-    iconClass:"bi bi-people-fill", iconBg:"rgba(124,143,255,0.08)", iconColor:"#9aabff",
-    title:"General Executive", subtitle:"Indian Student Association · UC", period:"2024",
-    badges:["Event Planning","Marketing"],
-    bullets:["Coordinated cultural events and socials.","Handled event marketing and promotion.","Collaborated with exec team on logistics."] },
-  { id:"pizzahut", category:["service"], modalTarget:"#pizzaHutModal",
-    iconClass:"bi bi-bicycle", iconBg:"rgba(220,80,60,0.08)", iconColor:"#e07060",
-    title:"Delivery Driver", subtitle:"Pizza Hut", period:"Oct 2023 – Jun 2024",
-    badges:["Delivery","Customer Service"],
-    bullets:["Prepared food in a fast-paced kitchen.","Delivered orders accurately and on time.","Managed stock and food safety standards."] },
-  { id:"paknsave", category:["service"], modalTarget:"#paknsaveModal",
-    iconClass:"bi bi-cart-fill", iconBg:"rgba(180,140,0,0.08)", iconColor:"#c9a84c",
-    title:"Grocery Assistant", subtitle:"PAK'nSAVE", period:"Dec 2020 – Aug 2021",
-    badges:["Teamwork","Stock Management"],
-    bullets:["Rotated and replenished stock.","Assisted customers with in-store needs.","Kept store clean and well-organised."] },
-  { id:"saket", category:["service"], modalTarget:"#saketModal",
-    iconClass:"bi bi-cup-hot-fill", iconBg:"rgba(190,90,40,0.08)", iconColor:"#d4845a",
-    title:"Waiter Staff", subtitle:"Saket Indian Restaurant", period:"2017 – 2019",
-    badges:["Table Service","Delivery"],
-    bullets:["Welcomed guests and managed table service.","Handled orders, counter, and deliveries.","Supported kitchen and food prep duties."] },
-];
 
 const FILTERS: {key:FilterKey;label:string;icon:string}[] = [
   {key:"all",label:"All",icon:"bi-grid-fill"},
@@ -300,16 +256,6 @@ const AboutMe = () => {
         }
         .about-tl-card:hover{transform:translateX(5px);box-shadow:0 6px 20px rgba(0,0,0,0.4);border-color:rgba(124,143,255,0.35);}
 
-        /* Override Bootstrap modals to look dark */
-        .modal-content{background:#0f111a!important;border:1px solid var(--accent-border)!important;color:var(--text-primary)!important;}
-        .modal-header{border-bottom:1px solid var(--divider)!important;align-items:flex-start!important;}
-        .modal-title,.modal-body h5,.modal-body h6{color:var(--text-primary)!important;}
-        .modal-body p,.modal-body li,.modal-body .text-muted{color:var(--text-secondary)!important;}
-        .modal-body .bg-light{background:rgba(255,255,255,0.04)!important;border-color:var(--accent-border)!important;}
-        .modal-body .badge{background:var(--accent-dim)!important;color:rgba(200,210,255,0.8)!important;border-color:var(--accent-border)!important;}
-        .btn-close{filter:invert(1) opacity(0.5);}
-        .btn-primary{background:var(--accent)!important;border-color:var(--accent)!important;}
-        .btn-outline-secondary{border-color:var(--accent-border)!important;color:var(--text-secondary)!important;}
       `}</style>
 
       <div className="about-root">

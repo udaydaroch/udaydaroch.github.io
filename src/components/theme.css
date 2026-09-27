@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════
    SHARED THEME  —  import this in every page
    ═══════════════════════════════════════════════════════════ */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap');
 
 /* ── Tokens ── */
 :root {
@@ -26,6 +26,11 @@
 
   --font-display:  'Syne', sans-serif;
   --font-mono:     'DM Mono', monospace;
+  --font-board:    'Bebas Neue', 'Syne', sans-serif;
+
+  --ball:          #e0443e;       /* cricket-ball red */
+  --ball-glow:     rgba(224,68,62,0.45);
+  --gold:          #f3c969;
 }
 
 /* ── Global page shell ── */
@@ -178,3 +183,49 @@
 }
 .ghost-btn:hover::before { opacity: 1; }
 .ghost-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ── Global page base ── */
+html, html body { background: var(--bg); }
+html body { color: var(--text-primary); }
+::selection { background: rgba(124,143,255,0.35); color: #fff; }
+html { scrollbar-color: rgba(124,143,255,0.35) var(--bg); }
+
+/* ── Dark Bootstrap modals (shared by Home + About) ── */
+.modal-content{background:#0f111a!important;border:1px solid var(--accent-border)!important;color:var(--text-primary)!important;}
+.modal-header{border-bottom:1px solid var(--divider)!important;align-items:flex-start!important;}
+.modal-title,.modal-body h5,.modal-body h6{color:var(--text-primary)!important;}
+.modal-body p,.modal-body li,.modal-body .text-muted{color:var(--text-secondary)!important;}
+.modal-body .bg-light{background:rgba(255,255,255,0.04)!important;border-color:var(--accent-border)!important;}
+.modal-body .badge{background:var(--accent-dim)!important;color:rgba(200,210,255,0.8)!important;border-color:var(--accent-border)!important;}
+.modal-backdrop.show{opacity:0.7;backdrop-filter:blur(4px);}
+.btn-close{filter:invert(1) opacity(0.5);}
+.btn-primary{background:var(--accent)!important;border-color:var(--accent)!important;}
+.btn-outline-secondary{border-color:var(--accent-border)!important;color:var(--text-secondary)!important;}
+
+/* ── Cricket-ball cursor follower ── */
+.ball-cursor, .ball-cursor-ring {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 2000;
+  border-radius: 50%; will-change: transform;
+}
+.ball-cursor {
+  width: 12px; height: 12px; margin: -6px 0 0 -6px;
+  background: radial-gradient(circle at 35% 30%, #ff8a80, var(--ball) 55%, #7a1612 100%);
+  box-shadow: 0 0 12px var(--ball-glow);
+}
+.ball-cursor::after {
+  content: ""; position: absolute; inset: 1px 5px;
+  border-left: 1px dashed rgba(255,255,255,0.8);
+  border-right: 1px dashed rgba(255,255,255,0.8);
+  border-radius: 50%;
+}
+.ball-cursor-ring {
+  width: 38px; height: 38px; margin: -19px 0 0 -19px;
+  border: 1px solid rgba(124,143,255,0.45);
+  transition: width .25s ease, height .25s ease, margin .25s ease, border-color .25s ease, background .25s ease;
+}
+.ball-cursor-ring.is-hover {
+  width: 64px; height: 64px; margin: -32px 0 0 -32px;
+  border-color: rgba(224,68,62,0.6); background: rgba(224,68,62,0.06);
+}
+@media (hover: none), (pointer: coarse) { .ball-cursor, .ball-cursor-ring { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ball-cursor-ring { display: none; } }

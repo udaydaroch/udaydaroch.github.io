@@ -8,7 +8,7 @@ import ucisa from "../assets/ucisa.png";
 import csseChatbot from "../assets/csse-chatbot.png";
 import speedWash from "../assets/SpeedWash.png";
 import mimiPrism from "../assets/prism.png";
-import KiwiSpend from "../assets/kiwispend.png";
+import KiwiSpend from "../assets/KiwiSpend.png";
 
 export interface Project {
   id: number;

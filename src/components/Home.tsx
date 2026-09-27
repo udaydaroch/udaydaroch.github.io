@@ -1,170 +1,347 @@
-import { useEffect, useRef, useState } from "react";
-import "./Home.css";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import RoadScene from "./three/RoadScene";
+import JobModals from "./JobModals";
+import { experiences, type Experience } from "../data/Experience";
+import { projects } from "../data/Projects";
 import "./theme.css";
+import "./Home.css";
 
-// ── Particle cursor trail ────────────────────────────────────────────────────
-function ParticleCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+// ─────────────────────────────────────────────────────────────────────────────
+// Small hooks
+// ─────────────────────────────────────────────────────────────────────────────
+function useReveal<T extends HTMLElement>(threshold = 0.15) {
+  const ref = useRef<T>(null);
+  const [shown, setShown] = useState(false);
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d")!;
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-    resize();
-    window.addEventListener("resize", resize);
-    type P = { x:number;y:number;vx:number;vy:number;life:number;maxLife:number;size:number;hue:number };
-    const ps: P[] = [];
-    const onMove = (e: MouseEvent) => {
-      for (let i = 0; i < 3; i++) ps.push({
-        x: e.clientX + (Math.random()-.5)*8, y: e.clientY + (Math.random()-.5)*8,
-        vx: (Math.random()-.5)*1.1, vy: -Math.random()*1.4-.4,
-        life: 1, maxLife: 0.6+Math.random()*0.6,
-        size: 1.8+Math.random()*2.8, hue: 230+Math.random()*50,
-      });
-    };
-    window.addEventListener("mousemove", onMove);
-    let raf: number;
-    const tick = () => {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      for (let i=ps.length-1;i>=0;i--) {
-        const p=ps[i]; p.x+=p.vx; p.y+=p.vy; p.vy-=0.025; p.life-=0.022/p.maxLife;
-        if(p.life<=0){ps.splice(i,1);continue;}
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);
-        ctx.fillStyle=`hsla(${p.hue},65%,72%,${p.life*0.42})`; ctx.fill();
-      }
-      raf=requestAnimationFrame(tick);
-    };
-    tick();
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize",resize); window.removeEventListener("mousemove",onMove); };
-  }, []);
-  return <canvas ref={canvasRef} style={{position:"fixed",inset:0,pointerEvents:"none",zIndex:0}} />;
+    const el = ref.current; if (!el) return;
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setShown(true); io.disconnect(); } }, { threshold });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [threshold]);
+  return [ref, shown] as const;
 }
 
-// ── Orbital skill tags ───────────────────────────────────────────────────────
-const SKILLS = [
-  {label:"React",angle:0},{label:"TypeScript",angle:51},{label:"Laravel",angle:102},
-  {label:"Vue.js",angle:153},{label:"Python",angle:204},{label:"Docker",angle:255},{label:"PostgreSQL",angle:306},
-];
-function OrbitTags() {
-  const [tick, setTick] = useState(0);
-  useEffect(() => { const id = setInterval(()=>setTick(t=>t+1),50); return ()=>clearInterval(id); },[]);
-  const pos = (r:number,speed:number,base:number) => {
-    const a=((base+tick*speed)*Math.PI)/180;
-    return {x:Math.cos(a)*r, y:Math.sin(a)*(r*0.38)};
-  };
+function useCountUp(target: number, run: boolean, ms = 1400) {
+  const [v, setV] = useState(0);
+  useEffect(() => {
+    if (!run) return;
+    let raf = 0; const t0 = performance.now();
+    const step = (t: number) => {
+      const k = Math.min(1, (t - t0) / ms);
+      setV(Math.round(target * (1 - Math.pow(1 - k, 3))));
+      if (k < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target, run, ms]);
+  return v;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Hero bits
+// ─────────────────────────────────────────────────────────────────────────────
+const ROLES = ["full-stack engineer.", "AI tinkerer.", "cricket fan.", "problem solver."];
+
+function TypedRole() {
+  const [i, setI] = useState(0);
+  const [txt, setTxt] = useState("");
+  const [del, setDel] = useState(false);
+  useEffect(() => {
+    const word = ROLES[i];
+    let t: ReturnType<typeof setTimeout>;
+    if (!del && txt.length < word.length) t = setTimeout(() => setTxt(word.slice(0, txt.length + 1)), 60);
+    else if (!del) t = setTimeout(() => setDel(true), 1700);
+    else if (txt.length) t = setTimeout(() => setTxt(txt.slice(0, -1)), 30);
+    else t = setTimeout(() => { setDel(false); setI((i + 1) % ROLES.length); }, 200);
+    return () => clearTimeout(t);
+  }, [txt, del, i]);
+  return <span className="hero-typed">{txt}<span className="hero-caret" /></span>;
+}
+
+const SplitWord = ({ word, delay }: { word: string; delay: number }) => (
+  <span className="split-word" aria-label={word}>
+    {word.split("").map((c, i) => (
+      <span key={i} className="split-char" style={{ animationDelay: `${delay + i * 55}ms` }} aria-hidden>{c}</span>
+    ))}
+  </span>
+);
+
+function Hero() {
   return (
-    <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",pointerEvents:"none",zIndex:1}}>
-      {SKILLS.slice(0,4).map(s=>{ const{x,y}=pos(220,0.18,s.angle); return(
-        <span key={s.label} className="orbit-tag" style={{transform:`translate(calc(-50% + ${x}px),calc(-50% + ${y}px))`}}>{s.label}</span>
-      );})}
-      {SKILLS.slice(4).map(s=>{ const{x,y}=pos(310,-0.11,s.angle); return(
-        <span key={s.label} className="orbit-tag orbit-tag--b" style={{transform:`translate(calc(-50% + ${x}px),calc(-50% + ${y}px))`}}>{s.label}</span>
-      );})}
+    <section className="hero">
+      <div className="hero-copy">
+        <p className="hero-eyebrow"><span className="dot-live" />Software Engineer · Christchurch, NZ</p>
+        <h1 className="hero-name">
+          <SplitWord word="UDAY" delay={150} />
+          <SplitWord word="DAROCH" delay={380} />
+        </h1>
+        <p className="hero-role">I'm a <TypedRole /></p>
+        <div className="hero-ctas">
+          <a href="#innings" className="cta-primary" onClick={e => { e.preventDefault(); document.getElementById("innings")?.scrollIntoView({ behavior: "smooth" }); }}>
+            <span>See my experience</span><i className="bi bi-arrow-down" />
+          </a>
+          <a href="https://linkedin.com/in/uday-daroch-152a51280" target="_blank" rel="noopener noreferrer" className="cta-ghost">
+            <i className="bi bi-linkedin" /> LinkedIn
+          </a>
+          <a href="https://github.com/udaydaroch" target="_blank" rel="noopener noreferrer" className="cta-ghost">
+            <i className="bi bi-github" /> GitHub
+          </a>
+        </div>
+      </div>
+
+      <div className="hero-road">
+        <RoadScene />
+        <p className="road-hint">
+          <span className="hint-mouse"><i className="bi bi-cursor" /> Move your cursor and he'll run to it. Stop on a station to see what he gets up to.</span>
+          <span className="hint-touch"><i className="bi bi-hand-index" /> Tap a station and he'll run over to it.</span>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LED ticker
+// ─────────────────────────────────────────────────────────────────────────────
+function Ticker() {
+  const items = useMemo(() => {
+    const set = new Set<string>();
+    ["React", "TypeScript", "Laravel", "Vue.js", "Python", "Docker", "Kubernetes", "AWS", "PostgreSQL", "Spring Boot", "Node.js", "LangChain", "Terraform", "Rust"].forEach(s => set.add(s));
+    return [...set];
+  }, []);
+  const row = (
+    <div className="ticker-row">
+      {items.map(s => <span key={s} className="ticker-item">{s}<i className="ticker-ball" /></span>)}
+    </div>
+  );
+  return (
+    <div className="ticker" aria-label="Tech I work with">
+      <div className="ticker-track">{row}{row}</div>
     </div>
   );
 }
 
-// ── Page ─────────────────────────────────────────────────────────────────────
-const Home = () => (
-  <>
-    <style>{`
-      @keyframes fadeUp  {from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
-      @keyframes fadeIn  {from{opacity:0}to{opacity:1}}
-      @keyframes scaleIn {from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
-      @keyframes floatY  {0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+// ─────────────────────────────────────────────────────────────────────────────
+// Career scorecard (stats)
+// ─────────────────────────────────────────────────────────────────────────────
+function StatTile({ value, label, sub, run, suffix = "" }: { value: number; label: string; sub: string; run: boolean; suffix?: string }) {
+  const v = useCountUp(value, run);
+  return (
+    <div className="stat-tile">
+      <div className="stat-num">{String(v).padStart(2, "0")}{suffix}</div>
+      <div className="stat-lbl">{label}</div>
+      <div className="stat-sub">{sub}</div>
+    </div>
+  );
+}
 
-      .home-root {
-        position:relative; min-height:calc(100vh - 60px);
-        display:flex; flex-direction:column; align-items:center; justify-content:center;
-        overflow:hidden; background:var(--bg);
-      }
-      .home-root::before {
-        content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-        background-image:
-          linear-gradient(var(--grid-line) 1px,transparent 1px),
-          linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
-        background-size:44px 44px; animation:shell-grid-pan 8s linear infinite;
-      }
-      .home-root::after {
-        content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-        background:radial-gradient(ellipse 70% 55% at 50% 50%,var(--accent-glow) 0%,transparent 70%);
-      }
-      .home-content {
-        position:relative; z-index:2;
-        display:flex; flex-direction:column; align-items:center; text-align:center; padding:2rem 1.5rem;
-      }
-      .home-name {
-        font-family:var(--font-display);
-        font-size:clamp(3.6rem,11vw,8.5rem); font-weight:800; line-height:0.95; letter-spacing:-0.03em;
-        background:linear-gradient(135deg,#ffffff 0%,#c8d0f0 35%,var(--accent) 65%,var(--purple) 100%);
-        background-size:280% 280%;
-        -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-        animation:scaleIn 0.7s 0.2s cubic-bezier(.34,1.56,.64,1) both, heading-shimmer 8s 1s ease infinite;
-        margin-bottom:0.5rem;
-      }
-      .home-subtitle {
-        font-family:var(--font-mono); font-size:clamp(0.7rem,1.8vw,0.85rem); font-weight:400;
-        letter-spacing:0.14em; color:var(--text-secondary);
-        animation:fadeUp 0.6s 0.45s ease both; margin-top:1rem;
-        display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:center;
-      }
-      .subtitle-dot {width:3px;height:3px;border-radius:50%;background:var(--accent);opacity:0.45;display:inline-block;}
-      .home-socials {
-        display:flex; gap:0.85rem; margin-top:2.5rem;
-        animation:fadeUp 0.6s 0.6s ease both; flex-wrap:wrap; justify-content:center;
-      }
-      .social-linkedin:hover{border-color:rgba(79,158,255,0.55)!important;box-shadow:0 8px 24px rgba(79,158,255,0.15)!important;}
-      .social-linkedin i{color:#5fa8e8;}
-      .social-github i{color:#8892aa;}
-      .orbit-tag {
-        position:absolute; top:50%; left:50%;
-        font-family:var(--font-mono); font-size:0.61rem; font-weight:500; letter-spacing:0.06em;
-        padding:4px 10px; border-radius:999px;
-        border:1px solid var(--accent-border); background:rgba(10,11,18,0.82);
-        color:rgba(175,188,255,0.68); backdrop-filter:blur(6px); white-space:nowrap; pointer-events:none;
-        animation:fadeIn 1s 1s ease both;
-      }
-      .orbit-tag--b{border-color:rgba(167,139,250,0.18);color:rgba(196,182,255,0.58);}
-      .scroll-hint {
-        position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
-        z-index:2; display:flex; flex-direction:column; align-items:center; gap:6px;
-        animation:fadeIn 1s 1.2s ease both; color:var(--text-dim);
-        font-family:var(--font-mono); font-size:0.6rem; letter-spacing:0.14em;
-      }
-      .scroll-hint-bar {
-        width:1px; height:28px;
-        background:linear-gradient(to bottom,rgba(124,143,255,0.3),transparent);
-        animation:floatY 2s ease-in-out infinite;
-      }
-      .orbit-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:340px;pointer-events:none;z-index:1;}
-      @media(max-width:768px){.orbit-wrap{display:none;}}
-    `}</style>
-
-    <div className="home-root">
-      <ParticleCanvas />
-      <div className="orbit-wrap"><OrbitTags /></div>
-      <div className="home-content">
-        <p className="eyebrow" style={{animation:"fadeIn 0.6s 0.1s ease both",marginBottom:"1rem"}}>Software Engineer</p>
-        <h1 className="home-name">Uday<br />Daroch</h1>
-        <p className="home-subtitle">
-          <span>Full Stack</span><span className="subtitle-dot"/>
-          <span>AI</span><span className="subtitle-dot"/>
-          <span>Security</span><span className="subtitle-dot"/>
-          <span>Christchurch, NZ</span>
-        </p>
-        <div className="home-socials">
-          <a href="https://linkedin.com/in/uday-daroch-152a51280" target="_blank" rel="noopener noreferrer" className="ghost-btn social-linkedin">
-            <i className="bi bi-linkedin" style={{position:"relative",zIndex:1}}/>
-            <span style={{position:"relative",zIndex:1}}>LinkedIn</span>
-          </a>
-          <a href="https://github.com/udaydaroch" target="_blank" rel="noopener noreferrer" className="ghost-btn social-github">
-            <i className="bi bi-github" style={{position:"relative",zIndex:1}}/>
-            <span style={{position:"relative",zIndex:1}}>GitHub</span>
-          </a>
+function Scorecard() {
+  const [ref, shown] = useReveal<HTMLDivElement>(0.3);
+  const seasons = new Date().getFullYear() - 2017;
+  const eng = experiences.filter(e => e.category.includes("engineering")).length;
+  return (
+    <section className="scorecard-wrap" ref={ref}>
+      <div className={`scorecard ${shown ? "is-in" : ""}`}>
+        <div className="scorecard-head">
+          <span>CAREER SCORECARD</span>
+          <span className="scorecard-team">U. DAROCH <em>(NZ)</em></span>
+        </div>
+        <div className="scorecard-grid">
+          <StatTile value={experiences.length} label="Innings" sub="roles played" run={shown} />
+          <StatTile value={eng} label="Tech knocks" sub="engineering roles" run={shown} />
+          <StatTile value={projects.length} label="Projects" sub="shipped & built" run={shown} />
+          <StatTile value={seasons} label="Seasons" sub="working since 2017" run={shown} suffix="+" />
         </div>
       </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// The innings: every job on a pitch-timeline
+// ─────────────────────────────────────────────────────────────────────────────
+function InningsCard({ exp, order, side }: { exp: Experience; order: number; side: "l" | "r" }) {
+  const [ref, shown] = useReveal<HTMLDivElement>(0.2);
+  const card = useRef<HTMLButtonElement>(null);
+
+  const onMove = (e: React.MouseEvent) => {
+    const el = card.current; if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+    el.style.setProperty("--rx", `${(0.5 - py) * 10}deg`);
+    el.style.setProperty("--ry", `${(px - 0.5) * 12}deg`);
+    el.style.setProperty("--mx", `${px * 100}%`);
+    el.style.setProperty("--my", `${py * 100}%`);
+  };
+  const onLeave = () => {
+    const el = card.current; if (!el) return;
+    el.style.setProperty("--rx", "0deg"); el.style.setProperty("--ry", "0deg");
+  };
+
+  return (
+    <div ref={ref} className={`inn-row inn-row--${side} ${shown ? "is-in" : ""}`} style={{ ["--glow" as string]: exp.glow }}>
+      <div className="inn-node"><span>{String(order).padStart(2, "0")}</span></div>
+      <button
+        ref={card}
+        className="inn-card tilt-card"
+        data-bs-toggle="modal"
+        data-bs-target={exp.modalTarget}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        aria-label={`${exp.title} at ${exp.subtitle}: open full details`}
+      >
+        <span className="inn-shine" />
+        <span className="inn-bignum" aria-hidden>{order}</span>
+        <div className="inn-top">
+          <div className="inn-logo">
+            {exp.image ? <img src={exp.image} alt="" /> : <i className={exp.iconClass} style={{ color: exp.iconColor }} />}
+          </div>
+          <div className="inn-meta">
+            <span className="inn-period"><i className="bi bi-calendar3" /> {exp.period}</span>
+            {exp.current
+              ? <span className="inn-status inn-status--live"><span className="dot-live" />NOT OUT*</span>
+              : <span className="inn-status">INNINGS COMPLETE</span>}
+          </div>
+        </div>
+        <h3 className="inn-company">{exp.subtitle}</h3>
+        <p className="inn-title">{exp.title}</p>
+        <p className="inn-blurb">{exp.blurb}</p>
+        <ul className="inn-bullets">
+          {exp.bullets.slice(0, 3).map(b => <li key={b}>{b}</li>)}
+        </ul>
+        <div className="inn-badges">
+          {exp.badges.map(b => <span key={b}>{b}</span>)}
+        </div>
+        <span className="inn-cta">Full scorecard <i className="bi bi-arrow-up-right" /></span>
+      </button>
     </div>
-  </>
+  );
+}
+
+function Innings() {
+  const wrap = useRef<HTMLDivElement>(null);
+  const ball = useRef<HTMLDivElement>(null);
+  const fill = useRef<HTMLDivElement>(null);
+  const [headRef, headIn] = useReveal<HTMLDivElement>(0.4);
+
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const el = wrap.current; if (!el) return;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (vh * 0.55 - r.top) / r.height));
+      const y = p * (r.height - 24);
+      if (ball.current) ball.current.style.transform = `translate(-50%, ${y}px) rotate(${p * 1440}deg)`;
+      if (fill.current) fill.current.style.height = `${y + 12}px`;
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); cancelAnimationFrame(raf); };
+  }, []);
+
+  const total = experiences.length;
+  return (
+    <section id="innings" className="innings">
+      <div ref={headRef} className={`section-head ${headIn ? "is-in" : ""}`}>
+        <p className="eyebrow">The batting order</p>
+        <h2 className="section-title">Every innings<br /><span className="grad">I've played.</span></h2>
+        <p className="section-sub">
+          Seven roles, from waiting tables in 2017 to shipping code for industrial IoT today.
+          Different pitches, same approach. Click any card for the full scorecard.
+        </p>
+      </div>
+
+      <div className="inn-wrap" ref={wrap}>
+        <div className="inn-pitch" aria-hidden>
+          <div className="inn-pitch-fill" ref={fill} />
+          <div className="inn-crease inn-crease--top" />
+          <div className="inn-crease inn-crease--bot" />
+          <div className="inn-ball" ref={ball}><i /></div>
+        </div>
+        {experiences.map((exp, i) => (
+          <InningsCard key={exp.id} exp={exp} order={total - i} side={i % 2 === 0 ? "l" : "r"} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Highlights reel (projects teaser)
+// ─────────────────────────────────────────────────────────────────────────────
+function Highlights() {
+  const [ref, shown] = useReveal<HTMLDivElement>(0.2);
+  const picks = projects.filter(p => p.image).slice(0, 4);
+  return (
+    <section className="highlights" ref={ref}>
+      <div className={`section-head ${shown ? "is-in" : ""}`}>
+        <p className="eyebrow">Highlights reel</p>
+        <h2 className="section-title">Shots worth<br /><span className="grad">a replay.</span></h2>
+      </div>
+      <div className={`hl-grid ${shown ? "is-in" : ""}`}>
+        {picks.map((p, i) => (
+          <Link to="/projects" key={p.id} className="hl-card tilt-card" style={{ transitionDelay: `${i * 90}ms` }}>
+            <div className="hl-img"><img src={p.image} alt={p.title} loading="lazy" /></div>
+            <div className="hl-body">
+              <span className="hl-idx">REPLAY {String(i + 1).padStart(2, "0")}</span>
+              <h3>{p.title}</h3>
+              <div className="hl-tech">{p.tech.slice(0, 4).map(t => <span key={t}>{t}</span>)}</div>
+            </div>
+          </Link>
+        ))}
+      </div>
+      <div className="hl-more">
+        <Link to="/projects" className="cta-ghost">All projects <i className="bi bi-arrow-right" /></Link>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Partnership CTA
+// ─────────────────────────────────────────────────────────────────────────────
+function Partnership() {
+  const [ref, shown] = useReveal<HTMLDivElement>(0.3);
+  return (
+    <section className="partner-wrap" ref={ref}>
+      <div className={`partner ${shown ? "is-in" : ""}`}>
+        <div className="partner-stumps" aria-hidden><i /><i /><i /></div>
+        <p className="eyebrow">Next ball</p>
+        <h2 className="partner-title">Let's build a <span className="grad">partnership.</span></h2>
+        <p className="partner-sub">Got a role, a project or just want to talk cricket? I'm always keen for a hit.</p>
+        <div className="hero-ctas" style={{ justifyContent: "center" }}>
+          <button className="cta-primary" onClick={() => window.dispatchEvent(new Event("open-contact"))}>
+            <span>Send me a message</span><i className="bi bi-send" />
+          </button>
+          <Link to="/about-me" className="cta-ghost">More about me <i className="bi bi-arrow-right" /></Link>
+        </div>
+      </div>
+      <footer className="home-foot">
+        <span>© {new Date().getFullYear()} Uday Daroch</span>
+        <span>Built with React, Three.js and a lot of cover drives</span>
+      </footer>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+const Home = () => (
+  <div className="home">
+    <div className="home-grid-bg" aria-hidden />
+    <Hero />
+    <Ticker />
+    <Scorecard />
+    <Innings />
+    <Highlights />
+    <Partnership />
+    {/* Modals live outside the z-indexed sections so they sit above the backdrop */}
+    <JobModals />
+  </div>
 );
 
 export default Home;
